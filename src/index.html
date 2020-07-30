@@ -1,20 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Word Details</title>
-</head>
-<body>
+    <style>
+      pre {
+        background: #f4f4f4;
+        border: 1px solid #ddd;
+        border-left: 3px solid #f36d33;
+        color: #666;
+        page-break-inside: avoid;
+        font-family: monospace;
+        font-size: 15px;
+        line-height: 1.6;
+        margin-bottom: 1.6em;
+        max-width: 100%;
+        overflow: auto;
+        padding: 1em 1.5em;
+        display: block;
+        word-wrap: break-word;
+      }
+    </style>
+  </head>
+  <body>
     <div class="main">
-        <h2>Enter the File url, you want to parse</h2>
-        <div class="input-form">
-            <label>File Url:</label>
-            <input type="text" id="file-url-input"/>
-        </div>
-        <div>
-            <button id="read-file">Read</button>
-        </div>
-    </div>  
-</body>
+      <h2>Enter the File url you want to parse</h2>
+      <div class="input-form">
+        <label>File Url:</label>
+        <input type="text" id="file-url-input" />
+      </div>
+      <div>
+        <button id="read-file" onclick="onReadClicked()">Read</button>
+      </div>
+      <pre id="output-area"></pre>
+      <pre>asdasd</pre>
+    </div>
+  </body>
 </html>
