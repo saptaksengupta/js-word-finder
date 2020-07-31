@@ -35,8 +35,8 @@ export class WordApiService {
             formattedObject["word"] = def.text;
             formattedObject["output"] = {
                 count: 1,
-                synonyms: this.getSynonyms(def.tr),
-                pos: def.pos
+                pos: def.pos,
+                synonyms: this.getSynonyms(def.tr)
             }
             formattedResp.push(formattedObject);
         })
