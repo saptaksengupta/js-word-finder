@@ -1,8 +1,10 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // Require  html-webpack-plugin plugin
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-module.exports = {
-    entry: __dirname + "/src/js/index.js", // webpack entry point. Module to start building dependency graph
+
+const clientConfig = {
+    entry: __dirname + "/src/js/index.js",  // webpack entry point. Module to start building dependency graph
+    mode: "production",
     output: {
         path: __dirname + '/dist', // Folder to store generated bundle
         filename: 'bundle.js',  // Name of generated bundle after build
@@ -105,3 +107,30 @@ module.exports = {
         port: 6600, // port to run dev-server
     }
 };
+
+const serverConfig = {
+    entry: "./server/server.js",
+    target: "node",
+    mode: "production",
+    output: {
+      path: __dirname,
+      filename: "server.js",
+      libraryTarget: "commonjs2"
+    },
+    module: {
+      rules: [
+        {
+            test: /\.js$/,
+            exclude: /(node_modules)/,
+            use: {
+                loader: 'babel-loader',
+                options: {
+                    presets: ['@babel/preset-env']
+                }
+            }
+        },
+      ]
+    }
+  };
+
+  module.exports = [clientConfig, serverConfig];

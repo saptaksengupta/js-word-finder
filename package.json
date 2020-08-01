@@ -4,7 +4,8 @@
   "description": "a javascript application to get the word detail from a dictionary",
   "main": "index.html ",
   "scripts": {
-    "start:dev": "webpack-dev-server --https --host 0.0.0.0",
+    "start:dev": "mode=development webpack-dev-server --host 0.0.0.0",
+    "start:server": "NODE_ENV=development webpack & nodemon dist/server.js",
     "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -20,6 +21,7 @@
     "http-server": "^0.12.1",
     "mini-css-extract-plugin": "^0.9.0",
     "node-sass": "^4.14.0",
+    "nodemon": "^2.0.4",
     "postcss-loader": "^3.0.0",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
@@ -31,5 +33,10 @@
     "webpack-dev-server": "^3.10.3"
   },
   "author": "Saptak Sengupta",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "request": "^2.88.2"
+  }
 }
