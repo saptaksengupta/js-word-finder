@@ -22,12 +22,12 @@ app.get("/parse-file", (req, res) => {
     const wordsArray = textFileContent
       .replace(/[.,?!;()"'-]/g, " ")
       .replace(/\s+/g, " ")
+      .replace(/[0-9]+/g, "")
       .toLowerCase()
       .split(" ");
 
     const wordparser = new WordParser(wordsArray);
-    const topTenWords = wordparser.getTopTenByHashing();
-    console.log(topTenWords);
+    const topTenWords = wordparser.getTopTenByHeap();
     res.json({ code: 200, message: topTenWords});
   });
 });
