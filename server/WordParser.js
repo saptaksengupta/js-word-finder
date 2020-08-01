@@ -1,12 +1,5 @@
-import { config } from "../src/js/config";
-
-// our Heap data structure will look like:-
-// [
-//     {"wordText": "count"},
-//     {"wordText": "count"},
-//     {"wordText": "count"},
-//     {"wordText": "count"}
-// ]
+import { config } from "./config";
+import { request } from "express";
 
 class WordParser {
   constructor(wordsArray = []) {
@@ -18,44 +11,6 @@ class WordParser {
     this.size = 0;
   }
 
-  getElementIndexFormHeap(word) {
-    return this.doBinarySearchForElement(
-      this.wordDictionaryHeap,
-      0,
-      this.wordDictionaryHeap.length,
-      word
-    );
-  }
-
-  doBinarySearchForElement(arr, start, end, element) {
-    if (end - start <= 0) {
-      return -1;
-    }
-
-    let mid = Math.trunc(start + (end - start) / 2);
-
-    if (arr[mid].word === element) {
-      return mid;
-    } else if (arr[start].word === element) {
-      return start;
-    } else if (arr[end - 1].word === element) {
-      return end - 1;
-    }
-
-    const lMid = this.doBinarySearchForElement(arr, start, mid, element);
-    const rMid = this.doBinarySearchForElement(arr, mid + 1, end, element);
-
-    if (lMid >= 0) {
-      return lMid;
-    }
-
-    if (rMid >= 0) {
-      return rMid;
-    }
-
-    return -1;
-  }
-
   getTopTenByHeap() {
     this.wordsArray.forEach((word) => {
       if (!this.wordDictionaryHash.has(word)) {
@@ -65,28 +20,29 @@ class WordParser {
         this.wordDictionaryHash.set(word, ++prevCount);
       }
     });
-    
+
     const obj = Object.fromEntries(this.wordDictionaryHash);
     for (let key in obj) {
       this.wordDictionaryHeap.push({
         word: key,
-        count: obj[key]
-      })
+        count: obj[key],
+      });
     }
     this.size = this.wordDictionaryHeap.length - 1;
     this.buildHeap(this.wordDictionaryHeap);
-    return [
-      this.popElement(),
-      this.popElement(),
-      this.popElement(),
-      this.popElement(),
-      this.popElement(),
-      this.popElement(),
-      this.popElement(),
-      this.popElement(),
-      this.popElement(),
-      this.popElement(),
-    ];
+
+    const topTenWords = this.getTopTen();
+    return topTenWords;
+  }
+
+  getTopTen() {
+    let arr = [];
+    const len = this.size > 10 ? 10 : this.size;  
+    console.log(len);
+    for (let i = 0; i < len; i++) {
+      arr.push(this.popElement());
+    }
+    return arr;
   }
 
   buildHeap(arr) {

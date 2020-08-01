@@ -1,11 +1,4 @@
-import { WordApiService } from "./WordApiService";
-import { WordParser } from "./WordParser";
-
-const wordApiService = new WordApiService();
-const wordParser = new WordParser();
-
-((wordApi) => {
-
+(() => {
     const outputDom = document.getElementById("output-area");
     const inputUrlDom = document.getElementById("file-url-input");
 
@@ -22,24 +15,8 @@ const wordParser = new WordParser();
         })
     };
 
-
-    const fetchWordListFromSource = (sourceUrl) => {
-        // fetch(sourceUrl)
-        //   .then((resp) => resp.json())
-        //   .then(data => console.log(data))
-        //   .catch((err) => {});
-      }
-
-    const getWordDetailsFromApi = (arr) => {
-        wordApi.fetWordDetails(arr).then(resp => {
-            renderOutput(resp);
-        }).catch(err => {
-            console.log("error occured: ", err);
-        })
-    }
-
     const renderOutput = (output) => {
         outputDom.textContent = JSON.stringify(output, null, 2);
     };
-})(wordApiService);
+})();
 
