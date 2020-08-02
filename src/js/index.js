@@ -1,3 +1,5 @@
+import "../sass/main.scss";
+
 (() => {
     const outputDom = document.getElementById("output-area");
     const inputUrlDom = document.getElementById("file-url-input");
