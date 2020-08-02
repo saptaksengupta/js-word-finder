@@ -27,15 +27,19 @@ export class WordApiService {
 
 
     processResponse(response, textArray) {
+        let newFormattedArray = []
         for(let i = 0; i < response.length; i++) {
             const def = response[i].def[0];
-            textArray[i]["output"] = {
-                count: textArray[i].count,
-                pos: def ? def.pos : 'NA',
-                synonyms: def ? this.getSynonyms(def.tr) : 'NA'
-            }
+            newFormattedArray.push({
+                word: def ? def.text : textArray[i].word,
+                output: {
+                    count: textArray[i].count,
+                    pos: def ? def.pos : 'NA',
+                    synonyms: def ? this.getSynonyms(def.tr) : 'NA'
+                }
+            });
         }
-        return textArray;
+        return newFormattedArray;
     }
 
     getSynonyms(translations) {

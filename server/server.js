@@ -5,16 +5,20 @@ import * as cors from "cors";
 import * as request from "request";
 
 import { WordParser } from "./WordParser";
+import { WordApiService } from "./WordApiService";
 
 const router = express.Router();
 
 const app = express();
+app.use(cors());
 
 app.get("/", (req, res) => {
   res.json({ code: 200, message: "backend serve started" });
 });
 
 app.get("/parse-file", (req, res) => {
+  const wordApi = new WordApiService();
+
   const fileUrl = req.query.sourceUrl;
   let textFileContent = null;
   request(fileUrl, { json: false }, (error, resp, body) => {
@@ -28,11 +32,17 @@ app.get("/parse-file", (req, res) => {
 
     const wordparser = new WordParser(wordsArray);
     const topTenWords = wordparser.getTopTenByHeap();
-    res.json({ code: 200, message: topTenWords});
+    // res.json({ code: 200, message: topTenWords });
+    wordApi
+      .fetchWordDetails(topTenWords)
+      .then(data => {
+        res.json({ code: 200, data: data });
+      })
+      .catch((err) => {
+        console.log("error occured: ", err);
+      });
   });
 });
-
-app.use(cors);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
