@@ -9,6 +9,11 @@ Find occurrences count of word in given text document. (Link of the document).
 
 After clone the repository (master branch) all you have to do is:
 
+To install the dependencies
+```bash
+npm install
+```
+
 Open two diffrent terminal window to run the backend and frontend server separately and run this to command resepectively.
 
 To start the backend node server
