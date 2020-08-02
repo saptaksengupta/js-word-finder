@@ -13,6 +13,10 @@ To install the dependencies
 ```bash
 npm install
 ```
+Requesting you to build the server code first by 
+```bash
+npm run build
+```
 
 Open two diffrent terminal window to run the backend and frontend server separately and run this to command resepectively.
 
