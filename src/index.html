@@ -7,17 +7,20 @@
   </head>
   <body>
     <div class="main">
-      <h2>Enter the File url you want to parse</h2>
-      <div class="input-form">
-        <label>File Url:</label>
-        <input type="text" id="file-url-input" />
+      <div class="heading">Enter the File url you want to parse</div>
+      <div class="search-container">
+        <div class="input-form">
+          <div class="text-wrapper">
+            <input type="text" id="file-url-input" />
+          </div>
+          <div class="btn-wrapper">
+            <button id="read-file" onclick="onReadClicked()">Read</button>
+          </div>
+        </div>
       </div>
-      <div>
-        <button id="read-file" onclick="onReadClicked()">Read</button>
-      </div>
-        <pre>
+      <pre id="output-container">
+          <br>
           <code id="output-area">
-            Json will appear here
           </code>
         </pre>
     </div>
