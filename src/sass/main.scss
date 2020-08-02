@@ -72,10 +72,19 @@ $primaryColor: #151246;
   }
 }
 
+#loader-container {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  font-size: 1.3em;
+  margin-top: 5em;
+}
+
 
 #output-container {
   display: none;
-  margin: 4em;
+  margin: 4em 15em;
   border-radius: 5px;
   background: #f4f4f4;
   border: 1px solid #ddd;
