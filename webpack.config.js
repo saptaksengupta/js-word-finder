@@ -118,7 +118,7 @@ const serverConfig = {
   target: "node",
   mode: "production",
   output: {
-    path: __dirname,
+    path: __dirname + '/dist',
     filename: "server.js",
     libraryTarget: "commonjs2",
   },
