@@ -38,7 +38,6 @@ class WordParser {
   getTopTen() {
     let arr = [];
     const len = this.size > 10 ? 10 : this.size;  
-    console.log(len);
     for (let i = 0; i < len; i++) {
       arr.push(this.popElement());
     }
