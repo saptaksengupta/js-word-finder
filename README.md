@@ -30,6 +30,8 @@ To start the frontend application server
 npm run start:dev
 ```
 
+Open http://localhost:6600 to play with application -- 
+
 Provide a valid text file link in the shown text box to parse it.
 
 ### Api used to get the word details
